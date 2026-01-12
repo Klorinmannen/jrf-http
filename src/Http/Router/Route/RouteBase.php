@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router\Route;
+namespace JRF\Http\Router\Route;
 
-use Projom\Http\Method;
-use Projom\Http\Request;
-use Projom\Http\Response;
-use Projom\Http\Response\Code;
-use Projom\Http\Router\Route\Action;
-use Projom\Http\Router\Route\Input\Definition;
-use Projom\Http\Router\Route\Path;
+use JRF\Http\Method;
+use JRF\Http\Request;
+use JRF\Http\Response;
+use JRF\Http\Response\Code;
+use JRF\Http\Router\Route\Action;
+use JRF\Http\Router\Route\Input\Definition;
+use JRF\Http\Router\Route\Path;
 
 abstract class RouteBase
 {

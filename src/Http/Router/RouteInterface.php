@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router;
+namespace JRF\Http\Router;
 
 use Closure;
 
-use Projom\Http\Middleware\MiddlewareInterface;
-use Projom\Http\Router\Route\Input\DefinitionInterface;
+use JRF\Http\Middleware\MiddlewareInterface;
+use JRF\Http\Router\Route\Input\DefinitionInterface;
 
 /**
  * Public interface for defining HTTP routes.

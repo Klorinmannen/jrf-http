@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit\Http\Middleware;
+namespace JRF\Tests\Unit\Http\Middleware;
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\Middleware\MiddlewareContext;
+use JRF\Http\Middleware\MiddlewareContext;
 
 class MiddlewareContextTest extends TestCase
 {

@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit\Http\Router;
+namespace JRF\Tests\Unit\Http\Router;
 
 use Closure;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\Middleware\MiddlewareContext;
-use Projom\Http\Middleware\MiddlewareInterface;
-use Projom\Http\Request;
-use Projom\Http\Router\Middleware;
+use JRF\Http\Middleware\MiddlewareContext;
+use JRF\Http\Middleware\MiddlewareInterface;
+use JRF\Http\Request;
+use JRF\Http\Router\Middleware;
 
 class MiddlewareTest extends TestCase
 {

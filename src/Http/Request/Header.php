@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Request;
+namespace JRF\Http\Request;
 
 class Header
 {

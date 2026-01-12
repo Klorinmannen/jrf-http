@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http;
+namespace JRF\Http;
 
 use Closure;
 use ValueError;
 
-use Projom\Http\Request;
-use Projom\Http\Response;
-use Projom\Http\Middleware\MiddlewareContext;
-use Projom\Http\Middleware\MiddlewareInterface;
-use Projom\Http\Response\Code;
-use Projom\Http\Response\ResponseBase;
-use Projom\Http\Router\Dispatcher;
-use Projom\Http\Router\DispatcherInterface;
-use Projom\Http\Router\Input\Assertion;
-use Projom\Http\Router\Input\AssertionInterface;
-use Projom\Http\Router\Middleware;
-use Projom\Http\Router\Route\Action;
-use Projom\Http\Router\Route\Route;
-use Projom\Http\Router\Route\RouteBase;
+use JRF\Http\Request;
+use JRF\Http\Response;
+use JRF\Http\Middleware\MiddlewareContext;
+use JRF\Http\Middleware\MiddlewareInterface;
+use JRF\Http\Response\Code;
+use JRF\Http\Response\ResponseBase;
+use JRF\Http\Router\Dispatcher;
+use JRF\Http\Router\DispatcherInterface;
+use JRF\Http\Router\Input\Assertion;
+use JRF\Http\Router\Input\AssertionInterface;
+use JRF\Http\Router\Middleware;
+use JRF\Http\Router\Route\Action;
+use JRF\Http\Router\Route\Route;
+use JRF\Http\Router\Route\RouteBase;
 
 class Router
 {

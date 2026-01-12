@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router\Route\Input;
+namespace JRF\Http\Router\Route\Input;
 
-use Projom\Http\Method;
-use Projom\Http\Router\Route\Input\DefinitionInterface;
+use JRF\Http\Method;
+use JRF\Http\Router\Route\Input\DefinitionInterface;
 
 /**
  * Data Transfer Object for route input definitions.
