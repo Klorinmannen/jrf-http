@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router;
+namespace JRF\Http\Router;
 
 enum ParameterType: string
 {

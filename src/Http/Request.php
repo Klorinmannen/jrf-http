@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http;
+namespace JRF\Http;
 
 use SensitiveParameter;
 
-use Projom\Http\Method;
-use Projom\Http\Request\Header;
-use Projom\Http\Request\Input;
-use Projom\Http\Request\Timer;
-use Projom\Http\Response\ResponseBase;
+use JRF\Http\Method;
+use JRF\Http\Request\Header;
+use JRF\Http\Request\Input;
+use JRF\Http\Request\Timer;
+use JRF\Http\Response\ResponseBase;
 
 class Request
 {

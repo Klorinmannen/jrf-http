@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router\Route;
+namespace JRF\Http\Router\Route;
 
-use Projom\Http\Controller;
-use Projom\Http\Response;
+use JRF\Http\Controller;
+use JRF\Http\Response;
 
 class Action
 {

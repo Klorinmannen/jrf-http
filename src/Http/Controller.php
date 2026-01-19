@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http;
+namespace JRF\Http;
 
-use Projom\Http\Request;
+use JRF\Http\Request;
 
 abstract class Controller
 {

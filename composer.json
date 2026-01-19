@@ -1,14 +1,12 @@
 {
-    "name": "klorinmannen/projom-http",
-    "description": "Projom http module",
-    "homepage": "https://projom.se",
+    "name": "klorinmannen/jrf-http",
+    "description": "HTTP routing library",
+    "homepage": "https://jrf.nu",
     "type": "library",
     "license": "MIT",
     "keywords": [
         "routing",
-        "projom",
-        "http",
-        "projom-http"
+        "http"
     ],
     "authors": [
         {
@@ -17,7 +15,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Projom\\": "src/"
+            "JRF\\": "src/"
         }
     },
     "require": {

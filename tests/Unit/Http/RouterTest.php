@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit;
+namespace JRF\Tests\Unit;
 
 use Closure;
 
@@ -10,14 +10,14 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\Controller;
-use Projom\Http\Request;
-use Projom\Http\Request\Input;
-use Projom\Http\Router;
-use Projom\Http\Router\DispatcherInterface;
-use Projom\Http\Router\ParameterType;
-use Projom\Http\Router\RouteInterface;
-use Projom\Http\Router\Route\Action;
+use JRF\Http\Controller;
+use JRF\Http\Request;
+use JRF\Http\Request\Input;
+use JRF\Http\Router;
+use JRF\Http\Router\DispatcherInterface;
+use JRF\Http\Router\ParameterType;
+use JRF\Http\Router\RouteInterface;
+use JRF\Http\Router\Route\Action;
 
 class InvoiceController extends Controller
 {

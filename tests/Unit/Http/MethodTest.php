@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit\Http;
+namespace JRF\Tests\Unit\Http;
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\Method;
+use JRF\Http\Method;
 
 class MethodTest extends TestCase
 {

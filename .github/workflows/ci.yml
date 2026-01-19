@@ -7,12 +7,12 @@ on:
     - cron: "0 4 * * 3"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   unit-tests:
     name: PHPUnit tests on ubuntu-latest
-    runs-on: [ubuntu-latest]
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -28,20 +28,30 @@ jobs:
         run: composer install --no-interaction --no-progress
 
       - name: Run coverage report
-        run: ./vendor/bin/phpunit --testsuite="Unit" --coverage-text="phpunit_coverage.txt" --coverage-html="coverage_html"
+        run: ./vendor/bin/phpunit --testsuite="Unit"
 
       - name: Coverage summary
-        run: cat phpunit_coverage.txt >> $GITHUB_STEP_SUMMARY
+        run: cat coverage.txt >> $GITHUB_STEP_SUMMARY
 
-      - name: Create archive for coverage html
-        run: tar -czvf coverage_html.tar.gz coverage_html
+      - name: Create archive for html coverage
+        run: tar -czvf html-coverage.tar.gz html-coverage
 
       - name: Upload coverage html archive
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-html
+          name: html-coverage
           overwrite: true
-          path: ./coverage_html.tar.gz
+          path: ./html-coverage.tar.gz
+
+      - name: Create coverage badge
+        uses: timkrase/phpunit-coverage-badge@v1.2.1
+        with:
+          report: ./clover-coverage.xml
+          coverage_badge_path: phpunit-coverage-badge.svg
+          push_badge: true
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          commit_name: github-actions[bot]
+          commit_email: github-actions[bot]@users.noreply.github.com
 
   psalm-security-scan:
     name: Psalm static security analysis on ubuntu-latest
@@ -62,6 +72,6 @@ jobs:
         continue-on-error: true
 
       - name: Upload security analysis results
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: results.sarif

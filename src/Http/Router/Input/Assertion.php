@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router\Input;
+namespace JRF\Http\Router\Input;
 
-use Projom\Http\Request;
-use Projom\Http\Response;
-use Projom\Http\Router\Input\AssertionInterface;
-use Projom\Http\Router\Input\Assertion\Parameter\Mandatory;
-use Projom\Http\Router\Input\Assertion\Parameter\Optional;
-use Projom\Http\Router\Input\Assertion\Parameter\Required;
-use Projom\Http\Router\Input\Assertion\Payload;
-use Projom\Http\Router\Input\Assertion\Util;
-use Projom\Http\Router\Route\Input\Definition;
+use JRF\Http\Request;
+use JRF\Http\Response;
+use JRF\Http\Router\Input\AssertionInterface;
+use JRF\Http\Router\Input\Assertion\Parameter\Mandatory;
+use JRF\Http\Router\Input\Assertion\Parameter\Optional;
+use JRF\Http\Router\Input\Assertion\Parameter\Required;
+use JRF\Http\Router\Input\Assertion\Payload;
+use JRF\Http\Router\Input\Assertion\Util;
+use JRF\Http\Router\Route\Input\Definition;
 
 class Assertion implements AssertionInterface
 {

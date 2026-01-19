@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router\Route;
+namespace JRF\Http\Router\Route;
 
-use Projom\Http\Router\Route\Path\DynamicPath;
-use Projom\Http\Router\Route\Path\StaticPath;
+use JRF\Http\Router\Route\Path\DynamicPath;
+use JRF\Http\Router\Route\Path\StaticPath;
 
 /*
 	Base class for defining route paths.
