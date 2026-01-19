@@ -33,15 +33,15 @@ jobs:
       - name: Coverage summary
         run: cat coverage.txt >> $GITHUB_STEP_SUMMARY
 
-      - name: Create archive for coverage html
-        run: tar -czvf coverage-html.tar.gz coverage-html
+      - name: Create archive for html coverage
+        run: tar -czvf html-coverage.tar.gz html-coverage
 
       - name: Upload coverage html archive
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-html
+          name: html-coverage
           overwrite: true
-          path: ./coverage-html.tar.gz
+          path: ./html-coverage.tar.gz
 
       - name: Create coverage badge
         uses: timkrase/phpunit-coverage-badge@v1.2.1
