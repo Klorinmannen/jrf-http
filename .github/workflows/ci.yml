@@ -31,7 +31,7 @@ jobs:
         run: ./vendor/bin/phpunit --testsuite="Unit"
 
       - name: Coverage summary
-        run: cat phpunit_coverage.txt >> $GITHUB_STEP_SUMMARY
+        run: cat coverage.txt >> $GITHUB_STEP_SUMMARY
 
       - name: Create archive for coverage html
         run: tar -czvf coverage-html.tar.gz coverage-html
