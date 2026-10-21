@@ -12,6 +12,8 @@ use PHPUnit\Framework\TestCase;
 
 use Projom\Http\OAS\Document;
 use Projom\Http\OAS\Route;
+use Projom\Http\Request;
+use Projom\Http\Request\Input;
 
 class DocumentTest extends TestCase
 {
@@ -114,5 +116,71 @@ class DocumentTest extends TestCase
 		} finally {
 			@unlink($txtFile);
 		}
+	}
+
+	#[Test]
+	public function loadBuildsRoutesThatMatchRequestPaths()
+	{
+		$data = [
+			'paths' => [
+				'/recipes/{recipe_id}' => [
+					'summary' => 'A recipe',
+					'parameters' => [
+						['name' => 'recipe_id', 'in' => 'path', 'required' => true, 'schema' => ['type' => 'integer']]
+					],
+					'get' => ['operationId' => 'Recipe_Controller@getRecipe']
+				]
+			]
+		];
+		file_put_contents($this->jsonFile, json_encode($data));
+		$routes = Document::load($this->jsonFile);
+
+		$request = Request::create(
+			Input::create(server: ['REQUEST_METHOD' => 'GET', 'REQUEST_URI' => '/recipes/5'])
+		);
+		$this->assertTrue($routes['/recipes/{recipe_id}']->match($request));
+		$this->assertSame(['recipe_id' => '5'], $request->pathParameters());
+	}
+
+	#[Test]
+	public function loadThrowsOnConflictingPathParameterTypes()
+	{
+		$data = [
+			'paths' => [
+				'/recipes/{recipe_id}' => [
+					'get' => [
+						'operationId' => 'Recipe_Controller@getRecipe',
+						'parameters' => [['name' => 'recipe_id', 'in' => 'path', 'schema' => ['type' => 'integer']]]
+					],
+					'delete' => [
+						'operationId' => 'Recipe_Controller@deleteRecipe',
+						'parameters' => [['name' => 'recipe_id', 'in' => 'path', 'schema' => ['type' => 'string']]]
+					]
+				]
+			]
+		];
+		file_put_contents($this->jsonFile, json_encode($data));
+		$this->expectException(RuntimeException::class);
+		Document::load($this->jsonFile);
+	}
+
+	#[Test]
+	public function loadThrowsOnLocalReference()
+	{
+		$data = ['paths' => ['/ref' => ['$ref' => '#/components/pathItems/ref']]];
+		file_put_contents($this->jsonFile, json_encode($data));
+		$this->expectException(RuntimeException::class);
+		Document::load($this->jsonFile);
+	}
+
+	#[Test]
+	public function loadThrowsOnYamlWithoutExtension()
+	{
+		if (extension_loaded('yaml'))
+			$this->markTestSkipped('Only applies when the yaml extension is missing.');
+
+		file_put_contents($this->yamlFile, "paths: {}\n");
+		$this->expectException(RuntimeException::class);
+		Document::load($this->yamlFile);
 	}
 }
