@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit\Http;
+namespace Projom\Tests\Unit\Http\OAS;
 
 use RuntimeException;
 
+use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\OAS\Router;
+use Projom\Http\OAS\Document;
 use Projom\Http\OAS\Route;
 
-class OASTest extends TestCase
+class DocumentTest extends TestCase
 {
 	private string $jsonFile;
 	private string $yamlFile;
@@ -37,7 +38,7 @@ class OASTest extends TestCase
 	{
 		file_put_contents($this->jsonFile, json_encode(['info' => 'no paths']));
 		$this->expectException(RuntimeException::class);
-		Router::load($this->jsonFile);
+		Document::load($this->jsonFile);
 	}
 
 	#[Test]
@@ -51,12 +52,13 @@ class OASTest extends TestCase
 			]
 		];
 		file_put_contents($this->jsonFile, json_encode($data));
-		$routes = Router::load($this->jsonFile);
+		$routes = Document::load($this->jsonFile);
 		$this->assertArrayHasKey('/foo', $routes);
 		$this->assertInstanceOf(Route::class, $routes['/foo']);
 	}
 
 	#[Test]
+	#[RequiresPhpExtension('yaml')]
 	public function loadParsesYamlFile()
 	{
 		$data = [
@@ -67,7 +69,7 @@ class OASTest extends TestCase
 			]
 		];
 		file_put_contents($this->yamlFile, yaml_emit($data));
-		$routes = Router::load($this->yamlFile);
+		$routes = Document::load($this->yamlFile);
 		$this->assertArrayHasKey('/bar', $routes);
 		$this->assertInstanceOf(Route::class, $routes['/bar']);
 	}
@@ -89,7 +91,7 @@ class OASTest extends TestCase
 			]
 		];
 		file_put_contents($this->jsonFile, json_encode($data));
-		$routes = Router::load($this->jsonFile);
+		$routes = Document::load($this->jsonFile);
 		$this->assertArrayHasKey('/ref', $routes);
 		$this->assertInstanceOf(Route::class, $routes['/ref']);
 	}
@@ -98,7 +100,7 @@ class OASTest extends TestCase
 	public function loadThrowsIfFileNotFound()
 	{
 		$this->expectException(RuntimeException::class);
-		Router::load('/not/a/real/file.json');
+		Document::load('/not/a/real/file.json');
 	}
 
 	#[Test]
@@ -108,7 +110,7 @@ class OASTest extends TestCase
 		file_put_contents($txtFile, 'foo');
 		$this->expectException(RuntimeException::class);
 		try {
-			Router::load($txtFile);
+			Document::load($txtFile);
 		} finally {
 			@unlink($txtFile);
 		}
