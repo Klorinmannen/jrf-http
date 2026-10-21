@@ -8,11 +8,8 @@ class Payload
 {
 	public static function normalize(array $expectedPayload): bool
 	{
-		if (!$expectedPayload)
-			return false;
-
-		$required = (bool) ($expectedPayload['required'] ?? true);
-
+		// OAS default for required is false.
+		$required = (bool) ($expectedPayload['required'] ?? false);
 		return $required;
 	}
 }
