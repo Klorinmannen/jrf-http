@@ -4,29 +4,45 @@ declare(strict_types=1);
 
 namespace Projom\Http\OAS\Route;
 
-use Projom\Http\Router\InputAssertion\Parameter as P;
+use RuntimeException;
 
-class Parameter extends P
+use Projom\Http\Router\ParameterType;
+
+class Parameter
 {
-    public static function normalize(array $parameterDefinitions): array
-    {
-        $normalized = [];
-        foreach ($parameterDefinitions as $parameterData) {
+	private const TYPE_MAP = [
+		'integer' => ParameterType::INTEGER,
+		'string' => ParameterType::STRING,
+		'boolean' => ParameterType::BOOL,
+	];
 
-            $in = $parameterData['in']; // 'path' or 'query'.
-            $name = $parameterData['name'] ?? '';
-            $type = $parameterData['schema']['type'] ?? '';
+	public static function normalize(array $parameterDefinitions): array
+	{
+		$normalized = [];
+		foreach ($parameterDefinitions as $parameterData) {
 
-            // Default to required: true for stricter safety precaution.
-            $required = (bool) ($parameterData['required'] ?? true);
+			$in = $parameterData['in']; // 'path' or 'query'.
+			$name = $parameterData['name'] ?? '';
+			$type = $parameterData['schema']['type'] ?? '';
 
-            $normalized[$in][] = [
-                'name' => $name,
-                'type' => static::normalizeParameterType($type),
-                'required' => $required
-            ];
-        }
+			// Default to required: true for stricter safety precaution.
+			$required = (bool) ($parameterData['required'] ?? true);
 
-        return $normalized;
-    }
+			$normalized[$in][] = [
+				'name' => $name,
+				'type' => static::toParameterType($type),
+				'required' => $required
+			];
+		}
+
+		return $normalized;
+	}
+
+	public static function toParameterType(string $oasType): ParameterType
+	{
+		$type = static::TYPE_MAP[$oasType] ?? null;
+		if ($type === null)
+			throw new RuntimeException("Unsupported OAS parameter type: '$oasType'");
+		return $type;
+	}
 }
