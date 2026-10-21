@@ -82,3 +82,15 @@ $router->addRoute(
 
 $router->dispatch();
 ````
+
+### OAS routes
+Routes can also be loaded from an OAS 3.0 file (json, or yaml with the `yaml` extension).
+````
+$router = new Router();
+$router->addOASRoutes(__DIR__ . '/openapi.json');
+$router->dispatch();
+````
+* `operationId` names the controller and method: `Recipe_Controller@getRecipe` dispatches to `Recipe\Controller::getRecipe`. Without `@method`, the HTTP method is used.
+* Path and query parameters of type `integer`, `string` and `boolean` are verified. Header and cookie parameters are not.
+* `requestBody.required` is verified. The payload content is not.
+* External `$ref`s to path items (`paths.json#/recipe`) are supported. Local `$ref`s (`#/components/...`) are not.
