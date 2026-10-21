@@ -19,6 +19,9 @@ class ControllerTest extends TestCase
 		return [
 			['Recipe_Controller@getRecipe', 'Recipe\Controller', 'getRecipe'],
 			['Recipe_Controller', 'Recipe\Controller', ''],
+			['recipe_controller@getRecipe', 'Recipe\Controller', 'getRecipe'],
+			['api_v2_recipeList@get', 'Api\V2\RecipeList', 'get'],
+			['API_Recipe@get', 'API\Recipe', 'get'],
 		];
 	}
 
