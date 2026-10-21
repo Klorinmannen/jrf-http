@@ -40,7 +40,7 @@ class Document
 	private static function addRouteData(Route $route, string $httpMethod, array $pathDetails): void
 	{
 		$method = Method::from(strtoupper($httpMethod));
-		$data = InputDefinition::create($method, $pathDetails);
+		$data = InputDefinition::createFromDetails($method, $pathDetails);
 		$route->setData($method, $data);
 	}
 

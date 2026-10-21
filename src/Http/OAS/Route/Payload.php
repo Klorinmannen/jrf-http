@@ -6,46 +6,13 @@ namespace Projom\Http\OAS\Route;
 
 class Payload
 {
-	public static function normalize(array $expectedPayload): array
+	public static function normalize(array $expectedPayload): bool
 	{
 		if (!$expectedPayload)
-			return [];
-
-		$type = '';
-		if ($content = $expectedPayload['content'] ?? [])
-			$type = key($content);
+			return false;
 
 		$required = (bool) ($expectedPayload['required'] ?? true);
 
-		return [
-			'type' => $type,
-			'required' => $required
-		];
-	}
-
-	public static function verify(string $inputPayload, array $expectedPayload): bool
-	{
-		// Nothing to check.
-		if (!$expectedPayload)
-			return true;
-
-		$type = $expectedPayload['type'];
-		if (!$type)
-			return false;
-
-		if ($expectedPayload['required']) {
-			if (!$inputPayload)
-				return false;
-		} else {
-			if (!$inputPayload)
-				return true;
-		}
-
-		$result = match ($type) {
-			'application/json' => !empty($inputPayload),
-			default => false
-		};
-
-		return $result;
+		return $required;
 	}
 }

@@ -5,48 +5,49 @@ declare(strict_types=1);
 namespace Projom\Http\OAS\Route;
 
 use Projom\Http\Method;
-use Projom\Http\Request;
-use Projom\Http\Response as httpResponse;
 use Projom\Http\OAS\Controller;
-use Projom\Http\OAS\Response;
 use Projom\Http\OAS\Route\Parameter;
 use Projom\Http\OAS\Route\Payload;
-use Projom\Http\OAS\Route\Security;
+use Projom\Http\Router\Route\Input\Definition;
 
-class InputDefinition
+/**
+ * Route input definition built from an OAS operation.
+ * Fills the core definition, so OAS routes are verified by the same input assertion as other routes.
+ */
+class InputDefinition extends Definition
 {
-	public array $requiredParameters = [];
-	public array $requiredPayload = [];
-	public bool $security = false;
-	public array $requiredResponse = [];
-	public array $controllerDetails = [];
-	public Method $method;
+	private string $controller = '';
+	private array $pathParameterTypes = [];
 
-	public function __construct() {}
+	public static function createFromDetails(
+		Method $method,
+		array $details,
+		array $pathLevelParameters = []
+	): InputDefinition {
 
-	public static function create(Method $method, array $routeData): InputDefinition
-	{
-		$data = new InputDefinition();
-		$data->method = $method;
-		$data->requiredParameters = Parameter::normalize($routeData['parameters'] ?? []);
-		$data->requiredPayload = Payload::normalize($routeData['requestBody'] ?? []);
-		$data->security = Security::normalize($routeData['security'] ?? []);
-		$data->requiredResponse = Response::normalize($routeData['responses'] ?? []);
-		$data->controllerDetails = Controller::normalize($routeData['operationId'] ?? '');
-		return $data;
+		$controllerDetails = Controller::normalize($details['operationId'] ?? '');
+		$parameters = Parameter::normalize($details['parameters'] ?? [], $pathLevelParameters);
+
+		$definition = new InputDefinition($method, $controllerDetails['method']);
+		$definition->controller = $controllerDetails['controller'];
+		$definition->pathParameterTypes = $parameters[Parameter::PATH];
+		$definition->requiredQueryParamDefinitions = $parameters[Parameter::REQUIRED_QUERY];
+		$definition->optionalQueryParamDefinitions = $parameters[Parameter::OPTIONAL_QUERY];
+		$definition->requiredPayload = Payload::normalize($details['requestBody'] ?? []);
+
+		return $definition;
 	}
 
-	public function verify(Request $request): void
+	public function controller(): string
 	{
-		if (!Payload::verify($request->payload(), $this->requiredPayload ?? []))
-			httpResponse::reject('Provided payload does not match expected');
+		return $this->controller;
+	}
 
-		$normalizedPathParams = Parameter::normalize($this->requiredParameters['path'] ?? []);
-		if (!Parameter::verifyPath($request->pathParameters(), $normalizedPathParams))
-			httpResponse::reject('Provided path parameters do not match expected');
-
-		$normalizedQueryParams = Parameter::normalize($this->requiredParameters['query'] ?? []);
-		if (!Parameter::verifyRequired($request->queryParameters(), $normalizedQueryParams))
-			httpResponse::reject('Provided query parameters do not match expected');
+	/**
+	 * @return array [ name => ParameterType ]
+	 */
+	public function pathParameterTypes(): array
+	{
+		return $this->pathParameterTypes;
 	}
 }

@@ -18,8 +18,8 @@ class Route extends RouteBase
 
 	public function setup(): void
 	{
-		$controller = $this->inputDefinition->controllerDetails['controller'];
-		$controllerMethod = $this->inputDefinition->controllerDetails['method'];
+		$controller = $this->inputDefinition->controller();
+		$controllerMethod = $this->inputDefinition->method();
 		$this->action = Action::create($controller, $controllerMethod);
 	}
 }
