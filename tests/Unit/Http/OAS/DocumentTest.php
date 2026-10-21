@@ -47,7 +47,7 @@ class DocumentTest extends TestCase
 		$data = [
 			'paths' => [
 				'/foo' => [
-					'get' => ['summary' => 'Get foo']
+					'get' => ['summary' => 'Get foo', 'operationId' => 'Foo_Controller@getFoo']
 				]
 			]
 		];
@@ -64,7 +64,7 @@ class DocumentTest extends TestCase
 		$data = [
 			'paths' => [
 				'/bar' => [
-					'post' => ['summary' => 'Post bar']
+					'post' => ['summary' => 'Post bar', 'operationId' => 'Bar_Controller@postBar']
 				]
 			]
 		];
@@ -79,7 +79,7 @@ class DocumentTest extends TestCase
 	{
 		$refData = [
 			'fooRef' => [
-				'put' => ['summary' => 'Put ref']
+				'put' => ['summary' => 'Put ref', 'operationId' => 'Ref_Controller@putRef']
 			]
 		];
 		file_put_contents($this->refJsonFile, json_encode($refData));
