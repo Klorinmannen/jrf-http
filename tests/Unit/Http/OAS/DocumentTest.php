@@ -165,6 +165,15 @@ class DocumentTest extends TestCase
 	}
 
 	#[Test]
+	public function loadThrowsOnInvalidJson()
+	{
+		file_put_contents($this->jsonFile, '{"paths": ');
+		$this->expectException(RuntimeException::class);
+		$this->expectExceptionMessage('Invalid JSON');
+		Document::load($this->jsonFile);
+	}
+
+	#[Test]
 	public function loadThrowsOnLocalReference()
 	{
 		$data = ['paths' => ['/ref' => ['$ref' => '#/components/pathItems/ref']]];

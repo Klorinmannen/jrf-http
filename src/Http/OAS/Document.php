@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Projom\Http\OAS;
 
+use JsonException;
 use RuntimeException;
 
 use Projom\Http\Method;
@@ -134,11 +135,20 @@ class Document
 	{
 		$extension = pathinfo($filePath, PATHINFO_EXTENSION);
 		$fileData = match ($extension) {
-			'json' => json_decode($file, associative: true) ?: [],
+			'json' => static::decodeJson($file, $filePath),
 			'yaml', 'yml' => static::decodeYaml($file, $filePath),
 			default => throw new RuntimeException("Unsupported file format: $extension for file $filePath"),
 		};
 		return $fileData;
+	}
+
+	private static function decodeJson(string $file, string $filePath): array
+	{
+		try {
+			return json_decode($file, associative: true, flags: JSON_THROW_ON_ERROR) ?: [];
+		} catch (JsonException $exception) {
+			throw new RuntimeException("Invalid JSON in file: $filePath, {$exception->getMessage()}", previous: $exception);
+		}
 	}
 
 	private static function decodeYaml(string $file, string $filePath): array
