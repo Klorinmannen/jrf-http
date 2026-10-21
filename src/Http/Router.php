@@ -11,6 +11,7 @@ use Projom\Http\Request;
 use Projom\Http\Response;
 use Projom\Http\Middleware\MiddlewareContext;
 use Projom\Http\Middleware\MiddlewareInterface;
+use Projom\Http\OAS\Document;
 use Projom\Http\Response\Code;
 use Projom\Http\Response\ResponseBase;
 use Projom\Http\Router\Dispatcher;
@@ -63,6 +64,19 @@ class Router
 		$route = Route::create($path, $controller);
 		$routeDefinition($route);
 		$this->routes[] = $route;
+	}
+
+	/**
+	 * Add routes from an OAS file (json, or yaml with the yaml extension) to the router.
+	 *
+	 * @param string $filePath The OAS file path.
+	 *
+	 * * Example: Router->addOASRoutes(__DIR__ . '/openapi.json');
+	 */
+	public function addOASRoutes(string $filePath): void
+	{
+		$routes = Document::load($filePath);
+		$this->routes = [...$this->routes, ...array_values($routes)];
 	}
 
 	/**

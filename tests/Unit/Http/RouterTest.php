@@ -100,6 +100,48 @@ class RouterTest extends TestCase
 	}
 
 	#[Test]
+	public function routeMatchesOASRoutesNextToDefinedRoutes(): void
+	{
+		$oasFile = tempnam(sys_get_temp_dir(), 'oas') . '.json';
+		$oas = [
+			'paths' => [
+				'/recipes/{recipe_id}' => [
+					'parameters' => [
+						['name' => 'recipe_id', 'in' => 'path', 'required' => true, 'schema' => ['type' => 'integer']]
+					],
+					'get' => [
+						'operationId' => 'Recipe_Controller@getRecipe',
+						'parameters' => [
+							['name' => 'page', 'in' => 'query', 'required' => true, 'schema' => ['type' => 'integer']]
+						]
+					]
+				]
+			]
+		];
+		file_put_contents($oasFile, json_encode($oas));
+
+		$router = new Router();
+		$router->addRoute('/invoices', InvoiceController::class, function (RouteInterface $route) {
+			$route->get();
+		});
+		try {
+			$router->addOASRoutes($oasFile);
+		} finally {
+			@unlink($oasFile);
+		}
+
+		$oasAction = $router->route(Request::create(
+			Input::create(server: ['REQUEST_METHOD' => 'GET', 'REQUEST_URI' => '/recipes/5?page=1'])
+		));
+		$definedAction = $router->route(Request::create(
+			Input::create(server: ['REQUEST_METHOD' => 'GET', 'REQUEST_URI' => '/invoices'])
+		));
+
+		$this->assertSame(['Recipe\Controller', 'getRecipe'], $oasAction);
+		$this->assertSame([InvoiceController::class, 'GET'], $definedAction);
+	}
+
+	#[Test]
 	public function dispatch(): void
 	{
 		$this->expectNotToPerformAssertions();
