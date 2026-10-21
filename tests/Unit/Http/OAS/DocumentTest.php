@@ -184,6 +184,25 @@ class DocumentTest extends TestCase
 	}
 
 	#[Test]
+	public function loadThrowsOnScalarJson()
+	{
+		file_put_contents($this->jsonFile, '"foo"');
+		$this->expectException(RuntimeException::class);
+		$this->expectExceptionMessage('must contain an object');
+		Document::load($this->jsonFile);
+	}
+
+	#[Test]
+	#[RequiresPhpExtension('yaml')]
+	public function loadThrowsOnScalarYaml()
+	{
+		file_put_contents($this->yamlFile, 'foo');
+		$this->expectException(RuntimeException::class);
+		$this->expectExceptionMessage('must contain an object');
+		Document::load($this->yamlFile);
+	}
+
+	#[Test]
 	public function loadThrowsOnLocalReference()
 	{
 		$data = ['paths' => ['/ref' => ['$ref' => '#/components/pathItems/ref']]];

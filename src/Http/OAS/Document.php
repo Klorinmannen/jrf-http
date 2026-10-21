@@ -139,19 +139,26 @@ class Document
 			'yaml', 'yml' => static::decodeYaml($file, $filePath),
 			default => throw new RuntimeException("Unsupported file format: $extension for file $filePath"),
 		};
+
+		// An empty document has no data.
+		if ($fileData === null)
+			return [];
+		if (!is_array($fileData))
+			throw new RuntimeException("OAS file must contain an object: $filePath");
+
 		return $fileData;
 	}
 
-	private static function decodeJson(string $file, string $filePath): array
+	private static function decodeJson(string $file, string $filePath): mixed
 	{
 		try {
-			return json_decode($file, associative: true, flags: JSON_THROW_ON_ERROR) ?: [];
+			return json_decode($file, associative: true, flags: JSON_THROW_ON_ERROR);
 		} catch (JsonException $exception) {
 			throw new RuntimeException("Invalid JSON in file: $filePath, {$exception->getMessage()}", previous: $exception);
 		}
 	}
 
-	private static function decodeYaml(string $file, string $filePath): array
+	private static function decodeYaml(string $file, string $filePath): mixed
 	{
 		if (!function_exists('yaml_parse'))
 			throw new RuntimeException("The yaml extension is required to load: $filePath");
@@ -172,6 +179,6 @@ class Document
 		if ($fileData === false)
 			throw new RuntimeException("Invalid YAML in file: $filePath, $parseError");
 
-		return $fileData ?: [];
+		return $fileData;
 	}
 }
