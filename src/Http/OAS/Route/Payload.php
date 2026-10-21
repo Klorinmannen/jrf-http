@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\OAS\Route;
+namespace JRF\Http\OAS\Route;
 
 class Payload
 {

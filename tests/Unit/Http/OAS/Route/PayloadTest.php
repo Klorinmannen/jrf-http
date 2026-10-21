@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit\Http\OAS\Route;
+namespace JRF\Tests\Unit\Http\OAS\Route;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\OAS\Route\Payload;
+use JRF\Http\OAS\Route\Payload;
 
 class PayloadTest extends TestCase
 {

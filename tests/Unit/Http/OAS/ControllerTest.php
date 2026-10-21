@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit\Http\OAS;
+namespace JRF\Tests\Unit\Http\OAS;
 
 use RuntimeException;
 
@@ -10,7 +10,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\OAS\Controller;
+use JRF\Http\OAS\Controller;
 
 class ControllerTest extends TestCase
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit\Http\Request;
+namespace JRF\Tests\Unit\Http\Request;
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\Request\Header;
+use JRF\Http\Request\Header;
 
 class HeaderTest extends TestCase
 {

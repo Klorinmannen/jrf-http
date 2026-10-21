@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit\Http\Router\Input\Assertion;
+namespace JRF\Tests\Unit\Http\Router\Input\Assertion;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\Router\Input\Assertion\Util;
-use Projom\Http\Router\ParameterType;
+use JRF\Http\Router\Input\Assertion\Util;
+use JRF\Http\Router\ParameterType;
 
 class UtilTest extends TestCase
 {

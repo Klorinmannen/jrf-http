@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http;
+namespace JRF\Http;
 
-use Projom\Http\ContentType;
-use Projom\Http\Response\Code;
-use Projom\Http\Response\ResponseBase;
+use JRF\Http\ContentType;
+use JRF\Http\Response\Code;
+use JRF\Http\Response\ResponseBase;
 
 class Response extends ResponseBase
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit\Http\Router;
+namespace JRF\Tests\Unit\Http\Router;
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\Router\ParameterType;
+use JRF\Http\Router\ParameterType;
 
 class ParameterTypeTest extends TestCase
 {

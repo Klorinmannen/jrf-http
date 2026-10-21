@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router;
+namespace JRF\Http\Router;
 
-use Projom\Http\Request;
-use Projom\Http\Router\Route\Action;
+use JRF\Http\Request;
+use JRF\Http\Router\Route\Action;
 
 interface DispatcherInterface
 {

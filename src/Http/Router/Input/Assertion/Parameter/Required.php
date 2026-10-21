@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router\Input\Assertion\Parameter;
+namespace JRF\Http\Router\Input\Assertion\Parameter;
 
-use Projom\Http\Router\Input\Assertion\Util;
+use JRF\Http\Router\Input\Assertion\Util;
 
 class Required
 {

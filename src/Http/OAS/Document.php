@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\OAS;
+namespace JRF\Http\OAS;
 
 use JsonException;
 use RuntimeException;
 
-use Projom\Http\Method;
-use Projom\Http\OAS\Path;
-use Projom\Http\OAS\Route;
-use Projom\Http\OAS\Route\InputDefinition;
+use JRF\Http\Method;
+use JRF\Http\OAS\Path;
+use JRF\Http\OAS\Route;
+use JRF\Http\OAS\Route\InputDefinition;
 
 class Document
 {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\OAS\Route;
+namespace JRF\Http\OAS\Route;
 
-use Projom\Http\Method;
-use Projom\Http\OAS\Controller;
-use Projom\Http\OAS\Route\Parameter;
-use Projom\Http\OAS\Route\Payload;
-use Projom\Http\Router\Route\Input\Definition;
+use JRF\Http\Method;
+use JRF\Http\OAS\Controller;
+use JRF\Http\OAS\Route\Parameter;
+use JRF\Http\OAS\Route\Payload;
+use JRF\Http\Router\Route\Input\Definition;
 
 /**
  * Route input definition built from an OAS operation.

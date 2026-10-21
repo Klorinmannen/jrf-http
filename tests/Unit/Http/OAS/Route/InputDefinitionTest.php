@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit\Http\OAS\Route;
+namespace JRF\Tests\Unit\Http\OAS\Route;
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\Method;
-use Projom\Http\OAS\Route\InputDefinition;
-use Projom\Http\Router\ParameterType;
-use Projom\Http\Router\Route\Input\Definition;
+use JRF\Http\Method;
+use JRF\Http\OAS\Route\InputDefinition;
+use JRF\Http\Router\ParameterType;
+use JRF\Http\Router\Route\Input\Definition;
 
 class InputDefinitionTest extends TestCase
 {

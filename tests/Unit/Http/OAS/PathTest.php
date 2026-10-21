@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit\Http\OAS;
+namespace JRF\Tests\Unit\Http\OAS;
 
 use RuntimeException;
 
@@ -10,9 +10,9 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\OAS\Path;
-use Projom\Http\Router\ParameterType;
-use Projom\Http\Router\Route\Path as RouterPath;
+use JRF\Http\OAS\Path;
+use JRF\Http\Router\ParameterType;
+use JRF\Http\Router\Route\Path as RouterPath;
 
 class PathTest extends TestCase
 {

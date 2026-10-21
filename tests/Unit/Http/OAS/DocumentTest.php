@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit\Http\OAS;
+namespace JRF\Tests\Unit\Http\OAS;
 
 use RuntimeException;
 
@@ -10,10 +10,10 @@ use PHPUnit\Framework\Attributes\RequiresPhpExtension;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\OAS\Document;
-use Projom\Http\OAS\Route;
-use Projom\Http\Request;
-use Projom\Http\Request\Input;
+use JRF\Http\OAS\Document;
+use JRF\Http\OAS\Route;
+use JRF\Http\Request;
+use JRF\Http\Request\Input;
 
 class DocumentTest extends TestCase
 {

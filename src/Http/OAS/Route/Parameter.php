@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\OAS\Route;
+namespace JRF\Http\OAS\Route;
 
 use RuntimeException;
 
-use Projom\Http\Router\ParameterType;
+use JRF\Http\Router\ParameterType;
 
 class Parameter
 {

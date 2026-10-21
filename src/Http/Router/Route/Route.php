@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router\Route;
+namespace JRF\Http\Router\Route;
 
 use Closure;
 
-use Projom\Http\Method;
-use Projom\Http\Middleware\MiddlewareInterface;
-use Projom\Http\Router\Middleware;
-use Projom\Http\Router\Route\Input\Definition;
-use Projom\Http\Router\Route\Input\DefinitionInterface;
-use Projom\Http\Router\RouteInterface;
-use Projom\Http\Router\Route\RouteBase;
+use JRF\Http\Method;
+use JRF\Http\Middleware\MiddlewareInterface;
+use JRF\Http\Router\Middleware;
+use JRF\Http\Router\Route\Input\Definition;
+use JRF\Http\Router\Route\Input\DefinitionInterface;
+use JRF\Http\Router\RouteInterface;
+use JRF\Http\Router\Route\RouteBase;
 
 class Route extends RouteBase implements RouteInterface
 {

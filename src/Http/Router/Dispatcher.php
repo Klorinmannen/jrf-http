@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router;
+namespace JRF\Http\Router;
 
 use ReflectionMethod;
 
-use Projom\Http\Request;
-use Projom\Http\Router\DispatcherInterface;
-use Projom\Http\Router\Route\Action;
+use JRF\Http\Request;
+use JRF\Http\Router\DispatcherInterface;
+use JRF\Http\Router\Route\Action;
 
 class Dispatcher implements DispatcherInterface
 {

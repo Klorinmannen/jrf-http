@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router\Route\Input;
+namespace JRF\Http\Router\Route\Input;
 
 /**
  * Public interface for route input definitions.

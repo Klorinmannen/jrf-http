@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit\Http;
+namespace JRF\Tests\Unit\Http;
 
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\Method;
-use Projom\Http\Request;
-use Projom\Http\Request\Input;
-use Projom\Http\Request\Timer;
-use Projom\Http\Response\ResponseBase;
+use JRF\Http\Method;
+use JRF\Http\Request;
+use JRF\Http\Request\Input;
+use JRF\Http\Request\Timer;
+use JRF\Http\Response\ResponseBase;
 
 class RequestTest extends TestCase
 {

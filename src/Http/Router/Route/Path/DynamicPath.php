@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router\Route\Path;
+namespace JRF\Http\Router\Route\Path;
 
-use Projom\Http\Router\ParameterType;
-use Projom\Http\Router\Route\Path;
+use JRF\Http\Router\ParameterType;
+use JRF\Http\Router\Route\Path;
 
 class DynamicPath extends Path
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\OAS;
+namespace JRF\Http\OAS;
 
-use Projom\Http\Method;
-use Projom\Http\OAS\Route\InputDefinition;
-use Projom\Http\Router\Route\Action;
-use Projom\Http\Router\Route\RouteBase;
+use JRF\Http\Method;
+use JRF\Http\OAS\Route\InputDefinition;
+use JRF\Http\Router\Route\Action;
+use JRF\Http\Router\Route\RouteBase;
 
 class Route extends RouteBase
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router\Input;
+namespace JRF\Http\Router\Input;
 
-use Projom\Http\Request;
-use Projom\Http\Router\Route\Input\Definition;
+use JRF\Http\Request;
+use JRF\Http\Router\Route\Input\Definition;
 
 interface AssertionInterface
 {

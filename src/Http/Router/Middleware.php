@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router;
+namespace JRF\Http\Router;
 
 use Closure;
 
-use Projom\Http\Request;
-use Projom\Http\Middleware\MiddlewareContext;
-use Projom\Http\Middleware\MiddlewareInterface;
+use JRF\Http\Request;
+use JRF\Http\Middleware\MiddlewareContext;
+use JRF\Http\Middleware\MiddlewareInterface;
 
 class Middleware
 {

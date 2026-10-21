@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Projom\Http\Router\Input\Assertion\Path;
+namespace JRF\Http\Router\Input\Assertion\Path;
 
-use Projom\Http\Router\Input\Assertion\Util;
+use JRF\Http\Router\Input\Assertion\Util;
 
 class Path
 {

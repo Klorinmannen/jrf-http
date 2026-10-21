@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit\Http\Router;
+namespace JRF\Tests\Unit\Http\Router;
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\Request;
-use Projom\Http\Request\Input;
-use Projom\Http\Router\Dispatcher;
-use Projom\Http\Router\Route\Action;
+use JRF\Http\Request;
+use JRF\Http\Request\Input;
+use JRF\Http\Router\Dispatcher;
+use JRF\Http\Router\Route\Action;
 
 class DummyController
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Projom\Tests\Unit\Http\Response;
+namespace JRF\Tests\Unit\Http\Response;
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
-use Projom\Http\Response\Code;
+use JRF\Http\Response\Code;
 
 class CodeTest extends TestCase
 {
