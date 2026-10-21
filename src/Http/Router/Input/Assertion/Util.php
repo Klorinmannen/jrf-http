@@ -29,7 +29,8 @@ class Util
 	private static function test(ParameterType $type, string $subject): bool
 	{
 		// Anchor the pattern to match the whole subject, 'D' prevents '$' from accepting a trailing newline.
-		$pattern = '/^' . $type->toPattern() . '$/D';
+		// 's' lets '.' match newlines, so multi-line values remain valid strings.
+		$pattern = '/^' . $type->toPattern() . '$/Ds';
 		$result = preg_match($pattern, $subject) === 1;
 		return $result;
 	}

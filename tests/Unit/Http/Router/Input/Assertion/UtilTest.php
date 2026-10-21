@@ -27,6 +27,8 @@ class UtilTest extends TestCase
 			'name' => [ParameterType::NAME, 'Jane Doe', true],
 			'name with forbidden character' => [ParameterType::NAME, 'Jane/Doe', false],
 			'string' => [ParameterType::STRING, 'any value', true],
+			'string with newline' => [ParameterType::STRING, "first line\nsecond line", true],
+			'empty string' => [ParameterType::STRING, '', false],
 		];
 	}
 
