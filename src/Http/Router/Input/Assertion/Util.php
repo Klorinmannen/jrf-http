@@ -26,9 +26,11 @@ class Util
 		return true;
 	}
 
-	private static function test(ParameterType $pathParameter, string $subject): bool
+	private static function test(ParameterType $type, string $subject): bool
 	{
-		$result = preg_match($pathParameter->toPattern(), $subject) === 1;
+		// Anchor the pattern to match the whole subject, 'D' prevents '$' from accepting a trailing newline.
+		$pattern = '/^' . $type->toPattern() . '$/D';
+		$result = preg_match($pattern, $subject) === 1;
 		return $result;
 	}
 
