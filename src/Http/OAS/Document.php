@@ -155,6 +155,23 @@ class Document
 	{
 		if (!function_exists('yaml_parse'))
 			throw new RuntimeException("The yaml extension is required to load: $filePath");
-		return yaml_parse($file) ?: [];
+
+		// yaml_parse reports parse errors as warnings, the first one describes the error.
+		$parseError = null;
+		set_error_handler(function (int $level, string $message) use (&$parseError): bool {
+			$parseError ??= $message;
+			return true;
+		});
+
+		try {
+			$fileData = yaml_parse($file);
+		} finally {
+			restore_error_handler();
+		}
+
+		if ($fileData === false)
+			throw new RuntimeException("Invalid YAML in file: $filePath, $parseError");
+
+		return $fileData ?: [];
 	}
 }

@@ -174,6 +174,16 @@ class DocumentTest extends TestCase
 	}
 
 	#[Test]
+	#[RequiresPhpExtension('yaml')]
+	public function loadThrowsOnInvalidYaml()
+	{
+		file_put_contents($this->yamlFile, 'paths: {a: [');
+		$this->expectException(RuntimeException::class);
+		$this->expectExceptionMessage('Invalid YAML');
+		Document::load($this->yamlFile);
+	}
+
+	#[Test]
 	public function loadThrowsOnLocalReference()
 	{
 		$data = ['paths' => ['/ref' => ['$ref' => '#/components/pathItems/ref']]];
